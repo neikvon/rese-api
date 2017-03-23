@@ -1,0 +1,19 @@
+{
+  "name": "rese-api",
+  "version": "0.0.1",
+  "author": "shaw",
+  "description": "The Node.js RESTful API Service",
+  "engines": {
+    "node": ">=7.6.0",
+    "npm": ">= 4.1.2"
+  },
+  "main": "lib/index.js",
+  "dependencies": {
+    "koa-router": "^7.0.1",
+    "mongoose": "^4.9.1"
+  },
+  "devDependencies": {},
+  "license": "MIT",
+  "repository": {},
+  "keywords": []
+}
