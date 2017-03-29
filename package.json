@@ -10,7 +10,9 @@
   "main": "lib/index.js",
   "dependencies": {
     "koa-router": "^7.0.1",
-    "mongoose": "^4.9.1"
+    "mongoose": "^4.9.1",
+    "mysql": "^2.13.0",
+    "sequelize": "^3.30.4"
   },
   "devDependencies": {},
   "license": "MIT",

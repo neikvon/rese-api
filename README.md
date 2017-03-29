@@ -111,7 +111,7 @@ reseApi.models.City.findOne()
 > http://mongoosejs.com/docs/models.html
 
 ### `reseApi.router`
-A Instance of KoaRouter
+Instance of KoaRouter
 > https://github.com/alexmingoia/koa-router
 
 ### `reseApi.add(name, config)`
