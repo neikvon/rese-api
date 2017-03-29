@@ -1,6 +1,6 @@
 {
   "name": "rese-api",
-  "version": "0.0.1",
+  "version": "0.0.3",
   "author": "shaw",
   "description": "The Node.js RESTful API Service",
   "engines": {

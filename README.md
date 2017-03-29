@@ -26,7 +26,7 @@ app.listen(3000)
 export deafult {
 
   db: {
-    type: 'mongodb',
+    type: 'mongodb', // or 'mysql'
     host: '127.0.0.1',
     port: '27017',
     database: 'your-database-name',
@@ -38,6 +38,8 @@ export deafult {
     prefix: 'api'
   },
 
+  // mongodb
+  // ref: http://mongoosejs.com/docs/guide.html
   schema: {
     City: {
       name: {
@@ -56,6 +58,46 @@ export deafult {
     },
     ...
   },
+
+  // mysql
+  // ref: http://docs.sequelizejs.com/en/v3/docs/models-definition/
+  schema: {
+    City: {
+      name: {
+        type: 'STRING',
+        allowNull: false,
+        defaultValue: ''
+      },
+      totalPopulation: {
+        type: 'BIGINT',
+        allowNull: false,
+      },
+      country: {
+        type: 'STRING'
+      }
+    },
+    Image: [{
+      md5: {
+        type: 'STRING',
+        allowNull: false,
+        validate: {
+          notEmpty: true
+        }
+      },
+      size: {
+        type: 'BIGINT(20)',
+        allowNull: false,
+        validate: {
+          isNumeric: true
+        }
+      },
+    }, {
+      tableName: 'picture_info',
+      timestamps: false,
+    }]
+    // http://docs.sequelizejs.com/en/v3/docs/models-definition/#configuration
+    ...
+  }
 }
 ```
 
@@ -81,34 +123,9 @@ All services.
 ```
 
 ### `reseApi.models`
-Mongoose Models (mongoDB)
+MongoDB: return mongoose models
 
-```bash
-{
-  City:
-  {
-    [Function: model]
-    hooks: [Object],
-    base: [Object],
-    modelName: 'City',
-    model: [Function: model],
-    db: [Object],
-    discriminators: undefined,
-    schema: [Object],
-    collection: [Object],
-    Query: [Object],
-    '$__insertMany': [Function],
-    insertMany: [Function]
-  },
-  ...
-}
-```
-
-```js
-reseApi.models.City.findOne()
-...
-```
-> http://mongoosejs.com/docs/models.html
+MySQL: return sequelize models
 
 ### `reseApi.router`
 Instance of KoaRouter
@@ -126,7 +143,14 @@ reseApi.add('city.sz', {
   prefix: 'cgi',  // optional，default: router.prefix
   controller: {   // required
     async fn(ctx) {
-      const data = await reseApi.models.City.find().limit(1)
+      // mongodb
+      // const data = await app.models.City.find().limit(2)
+
+      // mysql
+      const data = await app.models.City.findAll({
+        limit: 2
+      })
+
       return data
     }
   },
@@ -143,10 +167,21 @@ When no names, will hook all services.
 reseApi.hook('city.add', {
   async pre(ctx) {
     const name = ctx.request.body.name
-    const data = await reseApi.models.City.find({
-      name
-    })
-    if (data && data.length) {
+
+    // mongodb
+    // const params = {
+    //   name
+    // }
+
+    // mysql
+    const params = {
+      where: {
+        name
+      }
+    }
+
+    const data = await app.models.City.findOne(params)
+    if (data) {
       throw new Error(`${name} already exist`)
     }
   },
@@ -155,3 +190,13 @@ reseApi.hook('city.add', {
   }
 })
 ```
+
+## Changelog
+
+**v0.0.3**
+2017-03-29 21:10
+- Support sequelize configuration (http://docs.sequelizejs.com/en/v3/docs/models-definition/#configuration)
+
+**v0.0.2**
+2017-03-29 11:23
+- Add MySQL supports. (using: http://docs.sequelizejs.com/en/v3/)
