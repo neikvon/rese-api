@@ -200,9 +200,10 @@ Request Method:GET
 
 ## Changelog
 
-**v0.0.3**
+**v0.0.4**
 2017-05-24 12:34
 - Change config style.
+- Support more query conditions.
 
 **v0.0.3**
 2017-03-29 21:10
