@@ -1,7 +1,6 @@
 {
   "name": "rese-api",
-  "version": "0.0.5",
-  "author": "shaw",
+  "version": "0.0.6",
   "description": "The Node.js RESTful API Service",
   "engines": {
     "node": ">=7.6.0",
@@ -16,6 +15,19 @@
   },
   "devDependencies": {},
   "license": "MIT",
-  "repository": {},
-  "keywords": []
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/neikvon/rese-api.git"
+  },
+  "keywords": [
+    "restful",
+    "api",
+    "mongodb",
+    "mysql"
+  ],
+  "bugs": {
+    "url": "https://github.com/neikvon/rese-api/issues"
+  },
+  "homepage": "https://github.com/neikvon/rese-api#readme",
+  "author": "neikvon <neikvon@icloud.com>"
 }
