@@ -16,3 +16,4 @@ bench/
 coverage
 fbi/
 node_modules
+tmp-*

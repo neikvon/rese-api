@@ -31,72 +31,72 @@ export deafult {
     port: '27017',
     database: 'your-database-name',
     username: 'your-username',
-    password: 'your-password'
+    password: 'your-password',
+
+    // mongodb
+    // ref: http://mongoosejs.com/docs/guide.html
+    schema: {
+      City: {
+        name: {
+          type: String,
+          required: [true, 'name required'],
+        },
+        totalPopulation: {
+          type: Number,
+          required: [true, 'totalPopulation required'],
+        },
+        country: String,
+        zipCode: Number,
+      },
+      Person: {
+        ...
+      },
+      ...
+    },
+
+    // OR mysql
+    // ref: http://docs.sequelizejs.com/en/v3/docs/models-definition/
+    schema: {
+      City: {
+        name: {
+          type: 'STRING',
+          allowNull: false,
+          defaultValue: ''
+        },
+        totalPopulation: {
+          type: 'BIGINT',
+          allowNull: false,
+        },
+        country: {
+          type: 'STRING'
+        }
+      },
+      Image: [{
+        md5: {
+          type: 'STRING',
+          allowNull: false,
+          validate: {
+            notEmpty: true
+          }
+        },
+        size: {
+          type: 'BIGINT(20)',
+          allowNull: false,
+          validate: {
+            isNumeric: true
+          }
+        },
+      }, {
+        tableName: 'picture_info',
+        timestamps: false,
+      }]
+      // http://docs.sequelizejs.com/en/v3/docs/models-definition/#configuration
+      ...
+    }
   },
 
   router: {
     prefix: 'api'
-  },
-
-  // mongodb
-  // ref: http://mongoosejs.com/docs/guide.html
-  schema: {
-    City: {
-      name: {
-        type: String,
-        required: [true, 'name required'],
-      },
-      totalPopulation: {
-        type: Number,
-        required: [true, 'totalPopulation required'],
-      },
-      country: String,
-      zipCode: Number,
-    },
-    Person: {
-      ...
-    },
-    ...
-  },
-
-  // mysql
-  // ref: http://docs.sequelizejs.com/en/v3/docs/models-definition/
-  schema: {
-    City: {
-      name: {
-        type: 'STRING',
-        allowNull: false,
-        defaultValue: ''
-      },
-      totalPopulation: {
-        type: 'BIGINT',
-        allowNull: false,
-      },
-      country: {
-        type: 'STRING'
-      }
-    },
-    Image: [{
-      md5: {
-        type: 'STRING',
-        allowNull: false,
-        validate: {
-          notEmpty: true
-        }
-      },
-      size: {
-        type: 'BIGINT(20)',
-        allowNull: false,
-        validate: {
-          isNumeric: true
-        }
-      },
-    }, {
-      tableName: 'picture_info',
-      timestamps: false,
-    }]
-    // http://docs.sequelizejs.com/en/v3/docs/models-definition/#configuration
-    ...
   }
 }
 ```
@@ -191,7 +191,18 @@ reseApi.hook('city.add', {
 })
 ```
 
+## Demo
+### Client request:
+```
+Request URL: api/resource?md5=27ad74bfc80ce829fd3fc58410e04f26&limit=30&offset=0&order=update_at|desc
+Request Method:GET
+```
+
 ## Changelog
+
+**v0.0.3**
+2017-05-24 12:34
+- Change config style.
 
 **v0.0.3**
 2017-03-29 21:10
