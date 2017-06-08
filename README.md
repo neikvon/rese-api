@@ -141,19 +141,17 @@ reseApi.add('city.sz', {
   path: '/shaw',  // required
   method: 'get',  // optional，default: get
   prefix: 'cgi',  // optional，default: router.prefix
-  controller: {   // required
-    async fn(ctx) {
-      // mongodb
-      // const data = await app.models.City.find().limit(2)
+  async controller(ctx) {   // required
+    // mongodb
+    // const data = await app.models.City.find().limit(2)
 
-      // mysql
-      const data = await app.models.City.findAll({
-        limit: 2
-      })
+    // mysql
+    const data = await app.models.City.findAll({
+      limit: 2
+    })
 
-      return data
-    }
-  },
+    return data
+  }
 })
 ```
 

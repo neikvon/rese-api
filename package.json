@@ -7,13 +7,20 @@
     "npm": ">= 4.1.2"
   },
   "main": "lib/index.js",
+  "scripts": {
+    "demo": "node example/app.js"
+  },
   "dependencies": {
     "koa-router": "^7.0.1",
     "mongoose": "^4.9.1",
     "mysql": "^2.13.0",
     "sequelize": "^3.30.4"
   },
-  "devDependencies": {},
+  "devDependencies": {
+    "koa": "^2.2.0",
+    "koa-bodyparser": "^4.2.0",
+    "log4js": "^1.1.1"
+  },
   "license": "MIT",
   "repository": {
     "type": "git",
