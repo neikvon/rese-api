@@ -1,6 +1,6 @@
 {
   "name": "rese-api",
-  "version": "0.0.6",
+  "version": "0.0.7",
   "description": "The Node.js RESTful API Service",
   "engines": {
     "node": ">=7.6.0",
